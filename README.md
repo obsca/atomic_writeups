@@ -4,6 +4,8 @@
 
 Мои райтапы:
 
-- [Umbrella](Umbrella TryHackMe.md)
-- [Aster](Aster TryHackMe Writeup.md)
+[Umbrella](https://github.com/obsca/atomic_writeups/blob/main/Umbrella%20TryHackMe.md)
+[Aster](https://github.com/obsca/atomic_writeups/blob/main/Aster%20TryHackMe%20Writeup.md)
+
+
 
