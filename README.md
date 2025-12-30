@@ -6,7 +6,7 @@
 
 - [Umbrella](https://github.com/obsca/atomic_writeups/blob/main/Umbrella%20TryHackMe.md) - LFI, Docker Registry, Node.js injection, PE
 
-- [Aster](https://github.com/obsca/atomic_writeups/blob/main/Aster%20TryHackMe%20Writeup.md)
+- [Aster](https://github.com/obsca/atomic_writeups/blob/main/Aster%20TryHackMe%20Writeup.md) - Reverse, reacon -p-
 
 Так же я сейчас разрабатываю софт для быстрого информирования пользователей о CVE. Буду рад звезде)
 
