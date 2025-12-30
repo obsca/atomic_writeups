@@ -4,7 +4,7 @@
 
 Мои первые райтапы:
 
-- [Umbrella](https://github.com/obsca/atomic_writeups/blob/main/Umbrella%20TryHackMe.md)
+- [Umbrella](https://github.com/obsca/atomic_writeups/blob/main/Umbrella%20TryHackMe.md) - LFI, Docker Registry, Node.js injection, PE
 
 - [Aster](https://github.com/obsca/atomic_writeups/blob/main/Aster%20TryHackMe%20Writeup.md)
 
