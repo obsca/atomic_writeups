@@ -30,6 +30,7 @@ Nmap done: 1 IP address (1 host up) scanned in 13.42 seconds
 -sC - для использования стандартных скриптов
 -sV - для большей вербозности 
 
+<img width="1470" height="848" alt="Pasted image 20260102124930" src="https://github.com/user-attachments/assets/30713305-12c5-4e94-bfd0-c404220c41ee" />
 
 
 Видем некий блог. есть имя пользователя **meliodas**
@@ -50,11 +51,13 @@ by Ben "epi" Risher 🤓                 ver: 2.13.1
 
 Перебираеем директории - есть /image
 
-![[Pasted image 20260102125120.png]]
+<img width="911" height="430" alt="Pasted image 20260102125120" src="https://github.com/user-attachments/assets/38b20317-1bd6-49d9-bdd3-6085fe317b38" />
+
 
 На robots.txt.
 
-![[Pasted image 20260102125107.png]]
+<img width="1470" height="174" alt="Pasted image 20260102125107" src="https://github.com/user-attachments/assets/4bc9d509-2202-4ee8-ab99-637be4c1e94b" />
+
 
 По итогу небольшой разведки мы имеем следующее: имя некоего пользователя **meliodas**, директорию /images и robots.txt который намекает на rockyou.txt.  Для начала попробуем подобрать пароль для ssh для пользователя **meliodas** через hydra.
 
@@ -79,7 +82,8 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-01-02 13:08:
 
 ## User
 
-![[Pasted image 20260102131228.png]]
+<img width="808" height="366" alt="Pasted image 20260102131228" src="https://github.com/user-attachments/assets/c5c3a92a-de87-4ed1-8c3d-39dfb60d1a7b" />
+
 И мы внутри!
 
 ```
