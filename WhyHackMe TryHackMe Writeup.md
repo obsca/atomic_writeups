@@ -42,7 +42,9 @@ Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
 
 ```
 21 - ftp - есть вход через anonymous
+
 22 - ssh
+
 80 - http
 
 ```
