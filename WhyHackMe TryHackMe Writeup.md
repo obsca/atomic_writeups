@@ -223,7 +223,7 @@ jack@ubuntu:~$ cd /usr/lib/cgi-bin/
 -bash: cd: /usr/lib/cgi-bin/: Permission denied
 
 ```
-Из этого сообщения мы знаем о наличии /cgi-bin/ и о том что, firewall блокирует какой-то трафик.
+Из этого сообщения мы знаем о наличии /cgi-bin/ и о том что, firewall блокирует некий бекдор.
 
 Пока что скачаем файл **capture.pcap** к себе на машину.
 ```
