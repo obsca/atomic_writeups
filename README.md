@@ -21,6 +21,11 @@
 
 
 ## Некоторые райтапы
+
+- [WhyHackMe](https://github.com/obsca/atomic_writeups/blob/main/WhyHackMe%20TryHackMe%20Writeup.md) - stored XSS, backdoor
+
+- [Library](https://github.com/obsca/atomic_writeups/blob/main/Library%20TryHackMe%20Writeup.md) 
+
 - [Umbrella](https://github.com/obsca/atomic_writeups/blob/main/Umbrella%20TryHackMe.md) - LFI, Docker Registry, Node.js injection, PE
 
 - [Aster](https://github.com/obsca/atomic_writeups/blob/main/Aster%20TryHackMe%20Writeup.md) - Reverse, reacon -p-
