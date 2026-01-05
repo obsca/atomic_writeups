@@ -1,6 +1,6 @@
 
 - https://tryhackme.com/room/whyhackme
-- XSS, LFI, backdoor
+- XSS, RCE, backdoor
 ### Разведка
 Сканируем сеть
 nmap -sC -sV
@@ -129,7 +129,7 @@ Hey I just removed the old user mike because that account was compromised and fo
 ```
 
 Что делает наш скрипт? 
->Это классический XSS-payload для кражи файла с сервера жертвы. LFI в XSS.
+>Это классический XSS-payload для кражи файла с сервера жертвы. RCE в XSS.
 
 Открываем порт и принимаем файл.
 ```
