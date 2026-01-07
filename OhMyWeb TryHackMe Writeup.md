@@ -102,8 +102,6 @@ root@4a70924bafa0:/root# ls
 ls
 user.txt
 root@4a70924bafa0:/root# cat user.txt
-cat user.txt
-THM{eacffefe1d2aafcc15e70dc2f07f7ac1}
 ```
 Получаем наш юзер флаг
 ## Root
@@ -192,7 +190,7 @@ root
 uid=0(root) gid=0(root) groups=0(root)
 ubuntu
 Linux ubuntu 5.4.0-88-generic #99-Ubuntu SMP Thu Sep 23 17:29:00 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
-THM{7f147ef1f36da9ae29529890a1b6011f}
+[FLAG]
 ```
 
 ## Итог: почему удалось взломать?
