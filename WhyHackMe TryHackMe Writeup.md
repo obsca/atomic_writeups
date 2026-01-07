@@ -149,7 +149,7 @@ Accept: */*
 Referer: http://127.0.0.1/blog.php
 Accept-Encoding: gzip, deflate
 
-jack:WhyIsMyPasswordSoStrongIDK
+[REDACTED]
 ```
 Отлично! Мы получили наши креды.
 
@@ -192,7 +192,7 @@ To check for new updates run: sudo apt update
 
 Last login: Mon Jan 29 13:44:19 2024
 jack@ubuntu:~$ cat user.txt 
-1ca4eb201787acbfcf9e70fca87b866a
+[REDACTED]
 ```
 Спокойно читаем наш user.txt 
 ### Root
@@ -420,7 +420,7 @@ www-data@ubuntu:/usr/lib/cgi-bin$ sudo bash
 sudo bash
 root@ubuntu:/usr/lib/cgi-bin# cat /root/root.txt
 cat /root/root.txt
-4dbe2259ae53846441cc2479b5475c72 
+[REDACTED]
 ```
 
 ## Итог: почему удалось взломать?
