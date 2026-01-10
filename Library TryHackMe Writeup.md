@@ -84,7 +84,7 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-01-02 13:08:
 meliodas@ubuntu:~$ ls
 bak.py  user.txt
 meliodas@ubuntu:~$ cat user.txt
-6d488cbb3f111d135722c33cb635f4ec
+[REDACTED]
 meliodas@ubuntu:~$ 
 ```
 
@@ -121,7 +121,7 @@ meliodas@ubuntu:~$ sudo /usr/bin/python3 /home/meliodas/bak.py
 root@ubuntu:~# whoami
 root
 root@ubuntu:~# cat /root/root.txt
-e8c8c6c256c35515d1d344ee0488c617
+[REDACTED]
 ```
 И получаем наш root флаг
 
