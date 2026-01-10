@@ -83,7 +83,7 @@ Escape character is '^]'.
 Asterisk Call Manager/5.0.2
 Action: Login
 Username: admin
-Secret: abc123
+Secret: [REDACTED]
 
 Response: Success
 Message: Authentication accepted
