@@ -28,8 +28,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 16.95 seconds
 ```
 
-
-Смотрим 80 порт
+Смотрим 80 порт:
 <img width="1470" height="722" alt="Pasted image 20260128151914" src="https://github.com/user-attachments/assets/56f23484-4091-4c09-b74f-b5dda19d22ea" />
 
 
@@ -39,7 +38,7 @@ User-agent: *
 Allow: /flag_1.txt
 Allow: /secret_file_do_not_read.txt
 ```
-Переходим на /flag_1.txt и читаем первый флаг
+Переходим на /flag_1.txt и читаем первый флаг:
 
 ## FALG 2
 /secret_file_do_not_read.txt пишет Forbidden 
@@ -48,14 +47,14 @@ Allow: /secret_file_do_not_read.txt
 Посмотрим что еще есть на сайте
 <img width="1264" height="684" alt="Pasted image 20260128152345" src="https://github.com/user-attachments/assets/e37b0c55-3b91-43f7-a714-01e9109d6a60" />
 
-Видим в URL что параметр post.php?=post передает имя файла, может получится сделать LFI
+Видим в URL, что параметр post.php?=post передает имя файла, может получится сделать LFI
 >**Уязвимость LFI (Local File Inclusion — локальное включение файлов) возникает, когда веб-приложение допускает включение локальных файлов на сервере в своем коде без достаточной проверки или аутентификации. Основной принцип работы уязвимости LFI заключается в том, что злоумышленник может эксплуатировать эту уязвимость, чтобы получить доступ к локальным файлам на сервере и выполнить различные атаки.**
 
 Пробуем прочитать /etc/passwd таким образом
 ```
 http://10.80.129.112/post.php?post=../../../../etc/passwd
 ```
-И это работает! Мы вышли за пределы веб сервера и смогли прочитать файлы на локальной машине!
+И это работает! Мы вышли за пределы веб-сервера и смогли прочитать файлы на локальной машине!
 Пробуем прочитать тот самый файл secret_file_do_not_read.txt
 ```
 http://10.80.129.112/post.php?post=secret_file_do_not_read.txt
